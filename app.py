@@ -30,7 +30,7 @@ def searchResult():
         page = 1
 
     if data is not None :
-        r = requests.get("https://agri.gravicodev.id/map_data/list.json")
+        r = requests.get("https://agri.gravicodev.id/map_data/route.json")
         r = r.json()
         result = search(data)
 
@@ -52,9 +52,6 @@ def searchResult():
         passParam['query'] = data
         passParam['totalPage'] = jumlahPage
         passParam['currentPage'] = page
-
-        print(result)
-
         return render_template('%s.html' % pageName, variable = passParam)
     else:
         return redirect("/", code=302)
