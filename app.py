@@ -52,6 +52,9 @@ def searchResult():
         passParam['query'] = data
         passParam['totalPage'] = jumlahPage
         passParam['currentPage'] = page
+
+        print(result)
+
         return render_template('%s.html' % pageName, variable = passParam)
     else:
         return redirect("/", code=302)
