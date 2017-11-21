@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+</head>
+
+<body>
+    <div class="ui center aligned grid">
+        <div class="twelve wide column">
+            <div class="ui raised segment" style="margin-top: 1%">
+                <div class="ui two column center aligned grid container">
+                    <div class="two wide column">
+                        <a href="/">
+                            <img class="ui centered tiny small image" src="/img/gravity_logo.png">
+                        </a>
+                    </div>
+                    <div class="fourteen wide column">
+                        <form class="ui form" method="GET" action="/search">
+                            <div class="ui two column center aligned grid container" style="margin-top: 1.4%">
+                                <div class="fourteen wide column">
+                                    <input type="text" placeholder="Search Here" name="search" value="{{ variable["query"] }}">
+                                </div>
+                                <div class="two wide column">
+                                    <button class="ui left floated button" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="ui one cards">
+                {% for x in range(0,variable["result"]|length) %}
+                    {% if variable["result"][x][0] in variable["route"]%}
+                        <div class="card">
+                            <div class="content">
+                                <a href="{{variable["route"][variable["result"][x][0]]['url']}}" class="header">{{variable["route"][variable["result"][x][0]]['title']}}</a>
+                                <div class="meta">{{variable["route"][variable["result"][x][0]]['url']}}</div>
+                                <div class="description">
+                                    Score = {{ variable["result"][x][1] }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="ui pagination menu" style="margin-top: 5%">
+                {% for x in range(1,variable["totalPage"]|int + 1) %}
+                    {% if x ==  variable["currentPage"]|int%}
+                        <a class="active teal item">
+                    {% else %}
+                        <a href="/search?search={{ variable["query"] }}&p={{ x }}" class="item">
+                    {% endif %}
+                        {{x}}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
