@@ -30,7 +30,7 @@ def searchResult():
         page = 1
 
     if data is not None :
-        r = requests.get("http://localhost/webdata/route.json")
+        r = requests.get("https://agri.gravicodev.id/map_data/list.json")
         r = r.json()
         result = search(data)
 
