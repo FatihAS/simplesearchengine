@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/card.css">
+</head>
+
+<body>
+    <div class="ui center aligned grid">
+        <div class="twelve wide column">
+            <div class="ui raised segment" style="margin-top: 10%">
+                <div class="ui one center aligned column grid">
+                    <div class="six wide column">
+                        <img class="ui centered medium image" src="/img/gravity_logo.png">
+                    </div>
+                </div>
+                <form class="ui form" method="GET" action="/search-image">
+                    <div class="ui two column center aligned grid">
+                        <div class="fourteen wide column">
+                            <input type="text" placeholder="Paste Image Url Here" name="search">
+                        </div>
+                        <div class="two wide column">
+                            <button class="ui left floated button" type="submit">Search Image</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <h1>Query Image</h1>
+
+            <div class="ui centered cards" id="card_container">
+                    <div class="ui card">
+                        <div class="ui segment">
+                            <p></p>
+                            <div class="ui active dimmer">
+                                <div class="ui loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="ui segment">
+                            <p></p>
+                            <div class="ui active dimmer">
+                                <div class="ui loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui card">
+                        <div class="ui segment">
+                            <p></p>
+                            <div class="ui active dimmer">
+                                <div class="ui loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+<script>
+$("#card_container").html('');
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/img/adidas/1.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/img/adidas/2.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/img/amd/2.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/img/amd/6.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/img/bca/1.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/img/bca/6.png"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/bmw/bca/3.png"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/bmw/bca/1.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/bmw/eiger/1.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/bmw/eiger/2.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/bmw/nike/2.png"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/bmw/nike/4.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/bmw/nvidia/1.png"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/bmw/nvidia/11.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/bmw/toyota/1.jpg"));
+$("#card_container").append(createCard("https://gsearch.gravicodev.com/bmw/toyota/4.jpg"));
+
+    function createCard(url) {
+        var $div = $('<div>', { "class": "card" });
+        var $divImage = $('<div>', { "class": "image landscape" });
+        var $a = $('<a>');
+        $a.attr("href", "/search-image?search="+url);
+        var $img = $('<img>');
+        // start the download by setting the src property
+        $img.attr("src", url);
+        $img.addClass("ui image");
+        $divImage.append($img);
+        $a.append($divImage);
+        $div.append($a);
+
+        return $div;
+    }
+</script>
+</html>

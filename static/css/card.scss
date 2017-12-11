@@ -1,0 +1,39 @@
+$size : 400px;
+
+body{
+  padding:40px;
+}
+
+.card{
+  width:$size !important;
+}
+
+.card .image{
+  background: black !important;
+  width: $size; 
+  height: $size;
+  
+  &.icon{
+    text-align:center;
+    line-height:$size;
+    i{
+      display: inline-block;
+      vertical-align: middle;   
+    }
+  }
+  
+  &.portrait img{
+    border-radius: 0 !important;
+    height:$size !important;
+    width:auto !important;
+    margin:auto;
+  }
+  
+  &.landscape img{
+    border-radius: 0 !important;
+    position:absolute;
+    top:0;
+    bottom:0;
+    margin:auto;
+  }
+}

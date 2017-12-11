@@ -7,11 +7,11 @@ from operator import itemgetter
 import requests, json, codecs
 
 def reqListArtikel():
-    r = requests.get("https://agri.gravicodev.id/map_data/list.json")
+    r = requests.get("https://agri.gravicodev.com/map_data/list.json")
     return r
 
 def getArtikelData(artikelname):
-    r = requests.get("https://agri.gravicodev.id/map_data/"+ artikelname +".txt");
+    r = requests.get("https://agri.gravicodev.com/map_data/"+ artikelname +".txt");
 
     return r
 

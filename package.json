@@ -1,0 +1,22 @@
+{
+  "name": "se",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.py",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss-watch": "node-sass --watch static/scss -o static/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FatihAS/simplesearchengine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FatihAS/simplesearchengine/issues"
+  },
+  "homepage": "https://github.com/FatihAS/simplesearchengine#readme"
+}

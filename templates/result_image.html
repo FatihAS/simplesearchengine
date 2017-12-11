@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/card.css">
+    <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
+</head>
+
+<body>
+    <div class="ui center aligned grid">
+        <div class="twelve wide column">
+            <div class="ui raised segment" style="margin-top: 1%">
+                <div class="ui two column center aligned grid container">
+                    <div class="two wide column">
+                        <a href="/image">
+                            <img class="ui centered tiny small image" src="/img/gravity_logo.png">
+                        </a>
+                    </div>
+                    <div class="fourteen wide column">
+                        <form class="ui form" method="GET" action="/search-image">
+                            <div class="ui two column center aligned grid container" style="margin-top: 1.4%">
+                                <div class="fourteen wide column">
+                                    <input type="text" placeholder="Search Here" name="search" value="{{ variable["query"] }}">
+                                </div>
+                                <div class="two wide column">
+                                    <button class="ui left floated button" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="ui centered cards" id="card_container">
+                <div class="ui card">
+                    <div class="ui segment">
+                        <p></p>
+                        <div class="ui active dimmer">
+                            <div class="ui loader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui card">
+                    <div class="ui segment">
+                        <p></p>
+                        <div class="ui active dimmer">
+                            <div class="ui loader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui card">
+                    <div class="ui segment">
+                        <p></p>
+                        <div class="ui active dimmer">
+                            <div class="ui loader"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    const app = new Clarifai.App({
+        apiKey: 'aaf468ee68224c069416a4ac1aef4b74'
+    });
+
+    app.inputs.search({ input: { url: '{{ variable["query"] }}' } }).then(
+        function (response) {
+            // do something with response
+            $("#card_container").html('');
+            for (var x = 0; x < response['hits'].length; x++) {
+                console.log(response['hits'][x]['input']['data']['image']['url']);
+                $("#card_container").append(createCard(response['hits'][x]['score'], response['hits'][x]['input']['data']['image']['url']));
+            }
+        },
+        function (err) {
+            // there was an error
+        }
+    );
+
+    function createCard(score, url) {
+        var $div = $('<div>', { "class": "card" });
+        var $divImage = $('<div>', { "class": "image landscape" });
+        var $img = $('<img>');;
+        // start the download by setting the src property
+        $img.attr("src", url);
+        $img.addClass("ui image");
+        var $divContent = $('<div>', { "class": "ui fluid content" });
+        var $content = $('<p>');
+        $content.html("Score = " + score);
+        $divImage.append($img);
+        $divContent.append($content);
+        $div.append($divImage);
+        $div.append($divContent);
+
+        return $div;
+    }
+</script>
+
+</html>
