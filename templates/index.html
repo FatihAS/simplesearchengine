@@ -4,6 +4,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
 </head>
 
 <body>
@@ -28,6 +29,36 @@
             </div>
         </div>
     </div>
+
+    <div id="tes">
+
+    </div>
 </body>
+<script>
+    const app = new Clarifai.App({
+        apiKey: 'aaf468ee68224c069416a4ac1aef4b74'
+    });
+
+    app.inputs.search({ input: { url: 'https://gsearch.gravicodev.com/img/bca/1.jpg' } }).then(
+        function (response) {
+            // do something with response
+            for(var x=0; x < response['hits'].length;x++){
+                console.log(response['hits'][x]['input']['data']['image']['url']);
+                var img = new Image();
+                // start the download by setting the src property
+                img.src = response['hits'][x]['input']['data']['image']['url'];
+
+                $("#tes").append(img);console.log(response['hits'][x]['input']['data']['image']['url']);
+            }
+        },
+        function (err) {
+            // there was an error
+        }
+    );
+
+    function hexToBase64(str) {
+        return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
+    }
+</script>
 
 </html>
