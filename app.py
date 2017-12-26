@@ -31,6 +31,11 @@ def indexImage():
     pageName = "index_image"
     return render_template('%s.html' % pageName)
 
+@app.route('/multiband',)
+def indexMultiband():
+    pageName = "result_multiband"
+    return render_template('%s.html' % pageName)
+
 @app.route('/search-image', methods=['GET'])
 def searchImage():
     pageName = "result_image"

@@ -1,0 +1,141 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/card.css">
+    <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js"></script>
+</head>
+
+<body>
+    <div class="ui center aligned grid">
+        <div class="twelve wide column">
+            <div class="ui raised segment" style="margin-top: 1%">
+                <div class="ui two column center aligned grid container">
+                    <div class="sixteen wide column">
+                        <a href="/image">
+                            <img class="ui centered tiny small image" src="/img/gravity_logo.png">
+                        </a>
+                        <h3>Multiband Image Clustering</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="ui container">
+                <div class="ui centered cards" id="card_container">
+                    <div class="card">
+                        <div class="image landscape">
+                            <img src="/img/multiband/gb1.jpg" class="ui image">
+                        </div>
+                        <div class="ui fluid content">
+                            <p>Band 1</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="image landscape">
+                            <img src="/img/multiband/gb2.jpg" class="ui image">
+                        </div>
+                        <div class="ui fluid content">
+                            <p>Band 2</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="image landscape">
+                            <img src="/img/multiband/gb3.jpg" class="ui image">
+                        </div>
+                        <div class="ui fluid content">
+                            <p>Band 3</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="image landscape">
+                            <img src="/img/multiband/gb4.jpg" class="ui image">
+                        </div>
+                        <div class="ui fluid content">
+                            <p>Band 4</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="image landscape">
+                            <img src="/img/multiband/gb5.jpg" class="ui image">
+                        </div>
+                        <div class="ui fluid content">
+                            <p>Band 5</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="image landscape">
+                            <img src="/img/multiband/gb7.jpg" class="ui image">
+                        </div>
+                        <div class="ui fluid content">
+                            <p>Band 7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="ui centered container">
+                <h3>Hasil Clustering</h3>
+            </div>
+            <div class="ui container" style="margin-top:2%">
+                <div class="ui centered cards" id="result_containerr">
+                    <div class="card">
+                        <div class="image landscape">
+                            <img src="/img/multiband/average.jpg" class="ui image" onclick="modalshow('/img/multiband/average.jpg','Average Linkage')">
+                        </div>
+                        <div class="ui fluid content">
+                            <p>Average Linkage</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="image landscape">
+                            <img src="/img/multiband/complete.jpg" class="ui image" onclick="modalshow('/img/multiband/average.jpg','Complete Linkage')">
+                        </div>
+                        <div class="ui fluid content">
+                            <p>Complete Linkage</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="image landscape">
+                            <img src="/img/multiband/single.jpg" class="ui image" onclick="modalshow('/img/multiband/average.jpg','Single Linkage')">
+                        </div>
+                        <div class="ui fluid content">
+                            <p>Single Linkage</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            <span id="modaltitle"></span>
+        </div>
+        <div class="image content">
+            <div class="ui centered image">
+                <img src="/images/avatar/large/chris.jpg" id="imagecon" style="height:200px;width:200px">
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui positive right labeled icon button">
+                Close
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    function modalshow(url,title){
+
+        $("#imagecon").attr("src",url);
+        $("#modaltitle").html(title);
+
+        $('.ui.modal')
+            .modal('show')
+        ;
+    }
+</script>
+
+</html>
