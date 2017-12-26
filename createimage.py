@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from operator import itemgetter
 
-filename = "single"
+filename = "centroid"
 height = 32
 width = 32
 rgbarr = [[230, 126, 34],[231, 76, 60],[149, 165, 166],[26, 188, 156],[52, 152, 219],[155, 89, 182],[52, 73, 94],[241, 196, 15]]
